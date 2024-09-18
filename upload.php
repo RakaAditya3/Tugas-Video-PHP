@@ -12,20 +12,20 @@
 
     if (isset($_POST['kirim'])) {
 
-        $file = $_FILES['upload'];
+        // $file = $_FILES['upload'];
 
-        var_dump($_FILES['upload']);
+        // var_dump($_FILES['upload']);
 
-        foreach ($file as $key => $value) {
-            echo $key . '= '.$value;
-            echo "<br>";
-        }
+        // foreach ($file as $key => $value) {
+        //     echo $key . '= '.$value;
+        //     echo "<br>";
+        // }
 
         $name = $_FILES['upload']['name'];
 
         $temp = $_FILES['upload']['tmp_name'];
 
-        echo $name.'='.$temp;
+        // echo $name.'='.$temp;
 
         move_uploaded_file($temp, 'gambar/' . $name);
 

@@ -25,8 +25,9 @@
             while ($row=mysqli_fetch_assoc($result)) {
                 $data[]=$row;
             }
-
-            return $data;
+            if (!empty($data)) {
+                return $data;
+            }
         }
 
         public function getITEM($sql)
@@ -59,9 +60,9 @@
 
     $db = new DB;
 
-    $db->pesan("Berhasil");
+    // $db->pesan("Berhasil");
 
-    var_dump($row);
+    // var_dump($row);
 
 
 
