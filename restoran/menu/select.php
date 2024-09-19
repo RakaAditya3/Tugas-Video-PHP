@@ -1,6 +1,8 @@
 <div>
     <h3 class="float-start">Menu</h3>
+    <a type="button" class="btn btn-danger float-start" style="margin-left: 20px;" href="?f=menu&m=insert">Tambah Data</a>
 </div>
+
 
 <?php
     
