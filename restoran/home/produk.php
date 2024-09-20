@@ -44,7 +44,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $r['menu'] ?></h5>
                         <p class="card-text"><?php echo $r['harga'] ?></p>
-                        <a type="button" class="btn btn-danger float-end" href="?f=kategori&m=insert">Beli</a>
+                        <a type="button" class="btn btn-danger float-end" href="?f=home&m=beli&id=<?php echo $r['idmenu']?>">Beli</a>
                     </div>
             </div>
 

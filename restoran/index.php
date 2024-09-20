@@ -5,6 +5,12 @@
 
     $sql = "SELECT * FROM tblkategori ORDER BY kategori";
     $row = $db->getALL($sql);
+
+    if (isset($_GET['log'])) {
+        session_destroy();
+        header("location: index.php");
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +29,20 @@
                 <h2><a href="index.php" class="text-decoration-none text-danger">HATAKU</a></h2>
             </div>
             <div class="col-md-9">
-                <div class="float-end mt-4 text-danger" > <a class="nav-link" href="?log=logout">Logout</a></div>
-                <div style="margin-right:50px"class="float-end mt-4 text-danger" > <a class="nav-link" href="?log=logout">Login</a></div>
-                <div class="float-end mt-4 m-5 text-danger"><a class="nav-link" >Pelanggan </a></div>
-                <div class="float-end mt-4 m-5 text-danger"><a class="nav-link" >Daftar </a></div>
+                <?php
+                    if (isset($_SESSION['pelanggan'])) {
+                        echo '<div class="float-end mt-4 text-danger" > <a class="nav-link" href="?log=logout">Logout</a></div>
+                        <div class="float-end mt-4 m-5 text-danger">Pelanggan : <a href="?f=home&m=beli" style="text-decoration-line:none;" class="text-danger">'.$_SESSION['pelanggan'].'</a></div>
+                        ';
+                    } else {
+                        echo ' <div class="float-end mt-4 text-danger" > <a class="nav-link" href="?f=home&m=login">Login</a></div>
+                                <div class="float-end mt-4 m-5 text-danger"><a class="nav-link" href="?f=home&m=daftar">SignUp </a></div>
+                        ';
+                    }
+                ?>
+
+
+
             </div>      
 
         </div>
@@ -63,12 +79,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="row mt-5">
-            <div class="col">
-                <p class="text-center ">2024 CopyRight HatakuDimsum.com</p>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
