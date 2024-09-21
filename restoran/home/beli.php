@@ -64,7 +64,7 @@
             </tr>
         </thead> ';   
             foreach ($_SESSION as $key => $value) {
-                if ($key<>'pelanggan' && $key<>'idpelanggan') {
+                if ($key<>'pelanggan' && $key<>'idpelanggan' && $key<> 'user' && $key<>'level' && $key<>'iduser') {
                     // echo $sql.'-'.$value;
                     $id = substr($key,1);
     

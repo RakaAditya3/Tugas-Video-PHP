@@ -38,14 +38,13 @@
     if (isset($_POST['simpan'])) {
         $user = $_POST['user'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
-        $konfirmasi = $_POST['konfirmasi'];
+        $password = hash('sha256', $_POST['password']);
+        $konfirmasi =  hash('sha256', $_POST['konfirmasi']);
         $level = $_POST['level'];
 
         if ($password === $konfirmasi) {
             $sql = "INSERT INTO tbluser (user, email, password, level, aktif) VALUES ('$user', '$email', '$password', '$level', 1)";
             $db->runSQL($sql);
-
             header("Location: ?f=user&m=select");
         } else {
             echo "<h2>Password Tidak Cocok</h2>";
