@@ -9,8 +9,29 @@
     if (isset($_GET['log'])) {
         session_destroy();
         header("location: index.php");
-        
     }
+
+    function cart() {
+        global $db;
+        $cart = 0;
+        foreach ($_SESSION as $key => $value) {
+            if ($key<>'pelanggan' && $key<>'idpelanggan') {
+                $id = substr($key,1);
+    
+                $sql= "SELECT * FROM tblmenu WHERE idmenu=$id";
+    
+                $row = $db->getALL($sql);
+
+                foreach ($row as $r) {
+                $cart++;
+
+                }
+                
+            }
+        }
+        return $cart;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +52,11 @@
             <div class="col-md-9">
                 <?php
                     if (isset($_SESSION['pelanggan'])) {
-                        echo '<div class="float-end mt-4 text-danger" > <a class="nav-link" href="?log=logout">Logout</a></div>
-                        <div class="float-end mt-4 m-5 text-danger">Pelanggan : <a href="?f=home&m=beli" style="text-decoration-line:none;" class="text-danger">'.$_SESSION['pelanggan'].'</a></div>
+                        echo '
+                        <div class="float-end mt-4 text-danger" > <a class="nav-link" href="?log=logout">Logout</a></div>
+                        <div class="float-end mt-4 m-5 text-danger">Pelanggan : '.$_SESSION['pelanggan'].'</div>
+                        <div class="float-end mt-4 m-5 text-danger">Cart : (<a href="?f=home&m=beli" style="text-decoration-line:none;" class="text-danger">'.cart().'</a>)</div>
+                        <div class="float-end mt-4 m-5 text-danger"><a style="text-decoration-line:none;" class="text-danger" href ="?f=home&m=history">History </a></div>
                         ';
                     } else {
                         echo ' <div class="float-end mt-4 text-danger" > <a class="nav-link" href="?f=home&m=login">Login</a></div>

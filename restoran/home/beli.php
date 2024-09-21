@@ -5,6 +5,7 @@
     if (isset($_GET['hapus'])) {
         $id=$_GET['hapus'];
         unset($_SESSION['_'.$id]);
+        header("location:?f=home&m=beli");
     }
 
     if (isset($_GET['tambah'])) {
@@ -50,6 +51,7 @@
     function Keranjang() {
         global $db;
         $total = 0;
+        global $total;
         echo '<table class="table table-bordered border-dark">
 
         <thead>
@@ -88,5 +90,20 @@
                 <td><h3>'.$total.'</h3></td>
             </tr>';
             echo '</table>';
+    }
+
+
+?>
+
+
+<?php
+
+    if (!empty($total)) {
+        
+
+?>
+
+<a type="button" class="btn btn-danger float-end" href="?f=home&m=checkout&total=<?php echo $total?>">Checkout</a>
+<?php
     }
 ?>
